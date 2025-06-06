@@ -1,3 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import RegularLayout from "@/components/core/RegularLayout.vue";
+</script>
 
-<template>List</template>
+<template>
+  <RegularLayout></RegularLayout>
+</template>
+
+<style></style>
