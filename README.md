@@ -1,45 +1,29 @@
 # worklife-tech-test
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+Technical test for Worklife's hiring process
 
 ## Project Setup
+
+### Install dependencies
 
 ```sh
 yarn
 ```
 
-### Compile and Hot-Reload for Development
+### run locally
 
 ```sh
 yarn dev
 ```
 
-### Type-Check, Compile and Minify for Production
+You can now access webapp at [http://localhost:3030](http://localhost:3030)
 
-```sh
-yarn build
-```
+## Improvements
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-yarn test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-yarn lint
-```
+- Alert the user when an artwork failed to load (e.g. with a toast)
+- Add a "Go back to top" button
+- Enhance the form validation
+- Rework Select component for more UI customisation
+- Add a prepend icon on the text input
+- Each tile requires 2 requests. It's not satisfying. It would also be relevant to search if lower quality images are available.
+- Enhance the accessibility, allowing to focus the tiles
