@@ -41,7 +41,7 @@ const submitSearch = () => {
       autofocus
       class="keyword-input"
     />
-    <WButton :disabled="!artSearch" :loading>Submit</WButton>
+    <WButton :disabled="!artSearch" :loading>Show artworks</WButton>
   </form>
 </template>
 
