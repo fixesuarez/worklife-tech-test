@@ -94,6 +94,8 @@ const loadMoreArtworks = async () => {
 </template>
 
 <style lang="scss" scoped>
+@use "@/assets/variables.scss";
+
 .list-view-container {
   display: flex;
   flex-direction: column;
@@ -107,7 +109,10 @@ const loadMoreArtworks = async () => {
   .tiles-container {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(variables.$tile-height-regular, 1fr)
+    );
     gap: 20px;
   }
 }

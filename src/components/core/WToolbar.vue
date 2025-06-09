@@ -13,7 +13,7 @@
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/spacing.scss";
+@use "@/assets/variables.scss";
 
 .toolbar {
   position: fixed;
@@ -21,8 +21,8 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: spacing.$toolbar-height;
-  padding: 5px spacing.$padding-x;
+  height: variables.$toolbar-height;
+  padding: 5px variables.$padding-x;
   box-sizing: border-box;
   display: flex;
   align-items: center;

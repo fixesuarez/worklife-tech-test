@@ -12,22 +12,22 @@ import WToolbar from "@/components/core/WToolbar.vue";
 </template>
 
 <style lang="scss" scoped>
-@use "@/assets/spacing.scss";
+@use "@/assets/variables.scss";
 
 .regular-layout {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   main {
-    padding: 0 spacing.$padding-x;
-    margin-top: spacing.$toolbar-height;
+    padding: 0 variables.$padding-x;
+    margin-top: variables.$toolbar-height;
   }
 }
 
 @media (max-width: 480px) {
   main {
     padding: 0 20px !important;
-    margin-top: spacing.$toolbar-height;
+    margin-top: variables.$toolbar-height;
   }
 }
 </style>

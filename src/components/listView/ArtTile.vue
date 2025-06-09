@@ -15,6 +15,8 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+@use "@/assets/variables.scss";
+
 .artwork-tile {
   position: relative;
   &:hover {
@@ -27,7 +29,7 @@ defineProps<{
   }
   .artwork-image {
     width: 100%;
-    height: 250px;
+    height: variables.$tile-height-regular;
     object-fit: cover;
     border-radius: 4px;
   }
@@ -62,7 +64,7 @@ defineProps<{
 @media (max-width: 480px) {
   .artwork-tile {
     .art-image {
-      height: 150px;
+      height: variables.$tile-height-mobile;
     }
   }
 }
