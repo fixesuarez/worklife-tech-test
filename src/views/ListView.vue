@@ -2,7 +2,7 @@
 import RegularLayout from "@/components/core/RegularLayout.vue";
 import SearchForm from "@/components/listView/SearchForm.vue";
 import ArtTile from "@/components/listView/ArtTile.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import type {
   ArtworkDetails,
   MuseumCollectionSearchResponse,
@@ -11,6 +11,8 @@ import {
   getArtworkDetails,
   getMuseumCollection,
 } from "@/services/museumCollectionService";
+import WButton from "@/components/core/inputs/WButton.vue";
+import { httpGet } from "@/utils/http";
 
 const isLoading = ref(false);
 
@@ -37,6 +39,29 @@ const artworks = ref<ArtworkDetails[]>([]);
 const addArtworks = (newArtworks: ArtworkDetails[]) => {
   artworks.value = [...artworks.value, ...newArtworks];
 };
+
+const isLoadMoreButtonVisible = computed<boolean>(() => {
+  return (
+    !!museumCollectionSearchResponse.value &&
+    (!!museumCollectionSearchResponse.value.next ||
+      (museumCollectionSearchResponse.value?.orderedItems &&
+        museumCollectionSearchResponse.value.orderedItems.length > 0))
+  );
+});
+const loadMoreArtworks = async () => {
+  isLoading.value = true;
+  if (
+    museumCollectionSearchResponse.value?.orderedItems &&
+    museumCollectionSearchResponse.value.orderedItems.length > 0
+  ) {
+    await getNextArtworksDetails();
+  } else if (museumCollectionSearchResponse.value?.next) {
+    museumCollectionSearchResponse.value = await httpGet(
+      museumCollectionSearchResponse.value.next.id,
+    );
+    getNextArtworksDetails();
+  }
+};
 </script>
 
 <template>
@@ -55,6 +80,12 @@ const addArtworks = (newArtworks: ArtworkDetails[]) => {
           :title="artwork.title"
         />
       </div>
+      <WButton
+        v-if="artworks.length > 0 && isLoadMoreButtonVisible"
+        :loading="isLoading"
+        @click="loadMoreArtworks()"
+        >Load more</WButton
+      >
     </div>
   </RegularLayout>
 </template>
@@ -65,8 +96,10 @@ const addArtworks = (newArtworks: ArtworkDetails[]) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  row-gap: 4rem;
+  padding-bottom: 4rem;
   :deep(.search-form) {
-    padding: 4rem 0;
+    padding-top: 4rem;
   }
   .tiles-container {
     width: 100%;
@@ -82,6 +115,7 @@ const addArtworks = (newArtworks: ArtworkDetails[]) => {
     .tiles-container {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 8px;
+      padding-ottom: 2rem;
     }
   }
 }
