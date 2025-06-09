@@ -7,7 +7,7 @@ import type {
 import { httpGet } from "../utils/http";
 
 export const getMuseumCollection = async (
-  searchParams: Record<string, string>,
+  searchParams?: Record<string, string>,
 ) => {
   let endpoint =
     "https://data.rijksmuseum.nl/search/collection?imageAvailable=true";

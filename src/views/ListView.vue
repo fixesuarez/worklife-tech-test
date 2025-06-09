@@ -15,15 +15,19 @@ import WButton from "@/components/core/inputs/WButton.vue";
 import { httpGet } from "@/utils/http";
 
 const isLoading = ref(false);
+const artworks = ref<ArtworkDetails[]>([]);
 
 const museumCollectionSearchResponse = ref<MuseumCollectionSearchResponse>();
-const searchMuseumCollection = async (searchParams: Record<string, string>) => {
+const searchMuseumCollection = async (
+  searchParams?: Record<string, string>,
+) => {
   isLoading.value = true;
   artworks.value = [];
   museumCollectionSearchResponse.value =
     await getMuseumCollection(searchParams);
   getNextArtworksDetails();
 };
+searchMuseumCollection();
 const getNextArtworksDetails = async () => {
   if (!museumCollectionSearchResponse.value) return;
   const nextItems = museumCollectionSearchResponse.value.orderedItems.splice(
@@ -35,7 +39,6 @@ const getNextArtworksDetails = async () => {
   isLoading.value = false;
 };
 
-const artworks = ref<ArtworkDetails[]>([]);
 const addArtworks = (newArtworks: ArtworkDetails[]) => {
   artworks.value = [...artworks.value, ...newArtworks];
 };
@@ -115,7 +118,7 @@ const loadMoreArtworks = async () => {
     .tiles-container {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 8px;
-      padding-ottom: 2rem;
+      padding-bottom: 2rem;
     }
   }
 }
